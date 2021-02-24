@@ -8,9 +8,18 @@
 # Define a function count_char(s, char) that takes a string and a character
 # and returns the number of times the given character appears in the string
 def count_char(s, char):
-  # YOUR CODE HERE
+    #start by initializing the count variable
+  count = 0
 
-  return
+  #stat iterating over the string s
+
+  for ch in s:
+    #checking if current character matches with the given character
+    if ch==char:
+      count+=1 #increment the count
+  #return count of char in s
+  return count
+
 
 # Part B. is_power_of
 # Define a function is_power_of(i,j) that takes 2 ints i and j
