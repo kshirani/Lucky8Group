@@ -17,7 +17,7 @@ def test(got, expected):
 def main():
     # set which functions to test
     check_count_char = True
-    check_is_power_of = False
+    check_is_power_of = True
     check_longest_word = False
 
     if check_count_char:

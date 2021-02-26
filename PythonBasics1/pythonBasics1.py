@@ -28,8 +28,41 @@ def count_char(s, char):
 # otherwise return False
 def is_power_of(i,j):
   # YOUR CODE HERE
+  #check for base condition
+  if j==1 and i!=0:
+    return True
+  if j==1 and i==0 :
+    return False
+  if i==1 and j!=1:
+    return False
 
-  return
+
+  #finding the correct power
+
+  # take absoute value for easy calculation
+  base = abs(i)
+  num = abs(j)
+  power = 1
+
+  if base<num:
+    #if i is smaller then j
+    #getting the positive power
+    while base<num:
+      power +=1 #increment the power
+      #getting new base
+      base = abs(i)**power
+
+  else :
+    #if i is bigger then j
+    #getting negative power
+    while base<num:
+      power -= 1 #increment the power
+
+      base = abs(i)**power
+
+  #at last rasing i to the power to required power and check if it is equal or not
+  return i**power == j
+
 
 # Part C. longest_word
 # Define a function longest_word(s) that takes a string s
