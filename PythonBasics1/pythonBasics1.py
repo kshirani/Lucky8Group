@@ -11,12 +11,13 @@ def count_char(s, char):
     #start by initializing the count variable
   count = 0
 
-  #stat iterating over the string s
+  #iterating over the string s
 
   for ch in s:
     #checking if current character matches with the given character
     if ch==char:
       count+=1 #increment the count
+
   #return count of char in s
   return count
 
@@ -48,7 +49,9 @@ def is_power_of(i,j):
     #if i is smaller then j
     #getting the positive power
     while base<num:
-      power +=1 #increment the power
+      power +=1
+      #increment the power
+
       #getting new base
       base = abs(i)**power
 
@@ -62,7 +65,8 @@ def is_power_of(i,j):
 
       base = abs(i)**power
 
-  #at last rasing i to the power to required power and check if it is equal or not
+  #rasing i to the power to required power
+  # & check if it is equal or not
   return i**power == j
 
 
@@ -83,7 +87,7 @@ def longest_word(s):
 
   for word in words:
     #check if length of current word is more or the same
-    if len(word)>=len(ans):
+    if length(word)>=length(ans):
 
       #update answer
       ans = word
