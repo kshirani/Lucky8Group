@@ -50,7 +50,7 @@ def is_power_of(i,j):
     #getting the positive power
     while base<num:
       power +=1
-      #increment the power
+      #increment power
 
       #getting new base
       base = abs(i)**power
@@ -59,7 +59,7 @@ def is_power_of(i,j):
     #if i is bigger then j
     #getting negative power
     while base<num:
-      #increment the power
+      #increment power
       power -= 1
 
 
