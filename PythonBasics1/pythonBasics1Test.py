@@ -18,7 +18,7 @@ def main():
     # set which functions to test
     check_count_char = True
     check_is_power_of = True
-    check_longest_word = False
+    check_longest_word = True
 
     if check_count_char:
         print('Testing count_char:')

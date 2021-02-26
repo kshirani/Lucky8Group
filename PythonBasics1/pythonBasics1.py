@@ -56,7 +56,9 @@ def is_power_of(i,j):
     #if i is bigger then j
     #getting negative power
     while base<num:
-      power -= 1 #increment the power
+      #increment the power
+      power -= 1
+
 
       base = abs(i)**power
 
@@ -72,5 +74,19 @@ def is_power_of(i,j):
 # if s is an empty string return an empty string
 def longest_word(s):
   # YOUR CODE HERE
+  ans = ""
 
-  return
+  #creating the list of all the words
+  words = s.split(" ")
+
+  #check Every word in words
+
+  for word in words:
+    #check if length of current word is more or the same
+    if len(word)>=len(ans):
+
+      #update answer
+      ans = word
+
+  return ans
+
