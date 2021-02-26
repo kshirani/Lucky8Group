@@ -51,7 +51,7 @@ def is_power_of(i,j):
     while base<num:
       power +=1
       #increment power
-
+    #hi
       #getting new base
       base = abs(i)**power
 
