@@ -14,6 +14,7 @@ import re
 # Note: Be sure to use RegEx and it works for both upper and lower case and for nonletters!
 
 def ends_with_consonant(s):
+
   return re.search('[b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]$',s)!=None
 
 
@@ -25,6 +26,7 @@ def ends_with_consonant(s):
 # (For our purposes, a number is any character that is 0,1,2,3,4,5,6,7,8, or 9.)
 # Note: Be sure to use RegEx!
 def ends_with_number(s):
+
   return re.search('[0-9]$',s)!=None
 
 
