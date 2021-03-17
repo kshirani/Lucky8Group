@@ -1,76 +1,47 @@
 # Python Activity
-#
-# Fill in the code for the functions below.
-# The starter code for each function includes a 'return'
-# which is just a placeholder for your code. Make sure to add what is going to be returned.
-
-
-# Part A. count_threes
-# Define a function count_threes(n) that takes an int and
+#define a function count_threes(n)
+#Part A (count_threes) now needs to return the multiple of three that occurs the most in a string.
+# For example, 0939639 would return 9 since it appeared 3 times while the other multiple of three appeared less than that.
+# You only need to worry about single digit multiples of 3 (3, 6, 9). You must use a dictionary to accomplish this.
 
 def count_threes(n):
-  # YOUR CODE HERE:
-  return int(n/3) #returns number of multiples of 3 in the range drom 0 to n including n
+    multiples={                 # since there are only three single digit multiples of 3 we set up dictionary with initial count 0
+        3:0,
+        6:0,
+        9:0
+    }
+    for number in n:            # iterate over the string to get each number
+        if int(number)%3==0 and number!='0' :      # check if number is a non-zero multiple of 3
+            multiples[int(number)]= multiples[int(number)] + 1  #increment count if it is
+    return max(multiples,key=multiples.get)             # return key with maximum value
 
 
+#define a function longest_consecutive_repeating_char(s)
+#Part B (longest_consecutive_repeating_char) now needs to account for the edge case where two characters have
+# the same consecutive repeat length. The return value should now be a list containing all characters with the longest
+# consecutive repeat. For example, the longest_consecutive_repeating_char('aabbccd') would return ['a', 'b', 'c'] (order doesn't matter).
+# You must use a dictionary to accomplish this.
 
-# Part B. longest_consecutive_repeating_char
-# Define a function longest_consecutive_repeating_char(s) that takes
-# a string s and returns the character that has the longest consecutive repeat.
 def longest_consecutive_repeating_char(s):
-  # YOUR CODE HERE:
-  a=len(s)
-  #declaring
-  char=1
-  consec=s[0]
-  max= 1
+    characters={}           # set up dictionary to keep count
+    last_char=None          # keep track of last character
+    for character in s:     # iterate over all the characters in string
+        if character not in characters.keys():  # if character not in dictionary set it up
+            characters[character]=1             # initial value of 1
+        if character==last_char:                # if consequtive i.e. matches last character
+            characters[character]=characters[character]+1   # increment count
+        last_char=character                     # set current character as last character for next run
+    #print(characters)
+    results=[]                                  # list of results to be returned
+    max_value=max(characters.values())          # find maximum value in dictionary
+    for character in s:                         # iterate over all the characters in string
+        if characters[character]==max_value and character not in results:   # if character is with maximum count and not included
+            results.append(character)                                       # include it
+    return results                              # return result
 
-  for i in range(0, a-1):
-    if s[i] == s[i + 1]:
-      char += 1
-
-    else:
-      if char > max:
-        max = char
-        consec=s[i]
-      char = 1
-
-  if char > max:
-    max = char
-    consec= s[i]
-  return consec
-#returns the character that has the longest consecutive repeat.
-
-
-
-
-
-# Part C. is_palindrome
-# Define a function is_palindrome(s) that takes a string s
-# and returns whether or not that string is a palindrome.
-# A palindrome is a string that reads the same backwards and
-# forwards. Treat capital letters the same as lowercase ones
-# and ignore spaces (i.e. case insensitive).
 def is_palindrome(s):
-  #YOUR CODE HERE:
-  i = 0
-  pa = len(s)-1 #(similar to circles activity)
- #declare
-
-  while i <= pa:
-    if s[i] == ' ':
-      i += 1
-      continue
-
-    if s[pa] == ' ':
-      pa -= 1
-      continue
-
-    #Treat capital letters the same as lowercase ones
-    if s[i].lower() != s[pa].lower():
-      return False
-    i += 1
-    pa -= 1
-  return True #returns whether or not that string is a palindrome
-
-
+    string=s.replace(' ','').lower()            # remove spaces and convert to lower case for comparison
+    for i in range(0, int(len(string)/2)):      # set mid-point and iterate
+        if string[i] != string[len(string)-i-1]:# check if nth character from beginning and end do not match
+            return False                        # well then it's not a palindrome. Return false
+    return True                                 # didn't fail any check so it is a palindrome. Return true
