@@ -10,6 +10,7 @@ app = Flask(__name__)     # create an app
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
 @app.route('/')
+@app.route('/index')
 def index():
     return 'Welcome, Notes App User!'
 
@@ -17,7 +18,8 @@ def index():
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
 # To see the web page in your web browser, go to the url,
-#   http://127.0.0.1:5000
+#  c
+# http://127.0.0.1:5000/index
 
 # Note that we are running with "debug=True", so if you make changes and save it
 # the server will automatically update. This is great for development but is a
