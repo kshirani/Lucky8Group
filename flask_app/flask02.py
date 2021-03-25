@@ -17,11 +17,18 @@ def index():
 #Here we added a variable (a_user) to store our mock user data and we passed that
 # variable to our template view (index.html) with a label called user.
 
+@app.route('/notes')
+def get_notes():
+    notes = {1:{'title': 'First note', 'text': 'This is my first note', 'date': '10-1-2020'},
+             2: {'title': 'Second note', 'text': 'This is my second note', 'date': '10-2-2020'}}
+    return render_template('notes.html', notes=notes)
+
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
 # To see the web page in your web browser, go to the url,
 #  c
-# http://127.0.0.1:5000/index !!
+# http://127.0.0.1:5000/index
+# http://127.0.0.1:5000/notes
 
 # Note that we are running with "debug=True", so if you make changes and save it
 # the server will automatically update. This is great for development but is a
