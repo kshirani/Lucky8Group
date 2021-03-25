@@ -14,7 +14,7 @@ app = Flask(__name__)     # create an app
 def index():
     a_user = {'name': 'Litzy', 'email':'mogli@uncc.edu'}
     return render_template('index.html' , user = a_user)
-#Here we added a variable (a_user) to store our mock user data and we passed that
+#^^^^^^Here we added a variable (a_user) to store our mock user data and we passed that
 # variable to our template view (index.html) with a label called user.
 
 @app.route('/notes')
@@ -23,12 +23,21 @@ def get_notes():
              2: {'title': 'Second note', 'text': 'This is my second note', 'date': '10-2-2020'}}
     return render_template('notes.html', notes=notes)
 
+#add a route and function to handle requests to display this view.  Since the purpose of this route is to display
+# the details of one note will still need to utilize our mock list of notes.
+@app.route('/notes/<note_id>')
+def get_note(note_id):
+    notes = {1:{'title': 'First note', 'text': 'This is my first note', 'date': '10-1-2020'},
+             2: {'title': 'Second note', 'text': 'This is my second note', 'date': '10-2-2020'}}
+    return render_template('note.html', note=notes[int(note_id)])
+
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
 # To see the web page in your web browser, go to the url,
 #  c
 # http://127.0.0.1:5000/index
 # http://127.0.0.1:5000/notes
+# http://127.0.0.1:5000/notes/1  or notes/2
 
 # Note that we are running with "debug=True", so if you make changes and save it
 # the server will automatically update. This is great for development but is a
