@@ -62,6 +62,7 @@ def get_note(note_id):
 @app.route('/notes/new', methods=['GET','POST'])
 def new_note():
     #new commit!!
+    
     #check method used for request
     if request.method == 'POST':
         #get title data
