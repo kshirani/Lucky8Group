@@ -61,8 +61,8 @@ def get_note(note_id):
 #Let's add a route and function to handle requests to display this view.
 @app.route('/notes/new', methods=['GET','POST'])
 def new_note():
-    #new commit!!
-    
+    #adding commits after directory errors
+
     #check method used for request
     if request.method == 'POST':
         #get title data
