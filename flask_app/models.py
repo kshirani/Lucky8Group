@@ -8,6 +8,7 @@ class Note(db.Model):
     date = db.Column("date", db.String(50))
 # can create a foreign key
     user_id= db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    comments = db.relationship("Comment", backref="note", cascade="all, delte-orphan", lazy=True)
     def __init__(self, title, text, date, user_id):
         self.title = title
         self.text = text
@@ -21,13 +22,25 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
     notes = db.relationship("Note", backref="user", lazy=True)
-
+    comments = db.relationship("Comment", backref="user", lazy=True)
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
         self.registered_on = datetime.date.today()
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_posted = db.Column(db.DateTime, nullable=False)
+    content = db.Column(db.VARCHAR, nullable=False)
+    note_id = db.Column(db.Integer, db.ForeignKey("note.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+
+    def __init__(self, content, note_id, user_id):
+        self.date_posted = datetime.date.today()
+        self.content = content
+        self.note_id = note_id
+        self.user_id = user_id
 
 
 

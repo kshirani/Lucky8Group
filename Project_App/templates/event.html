@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Events App">
+        <title>Event App - View your Event</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+    <nav>
+            <a href="{{ url_for('home')}}"> Home </a> ||
+            <a href="/events"> My events </a> ||
+            <a href="{{url_for('new_event')}}"> Add Event</a> ||
+            <a href="{{ url_for('logout')}}">Logout</a>
+        </nav>
+        <h1>Welcome {{user}} to the Events App!</h1>
+        <h1>Event detials</h1>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>{{ event.title }}</td>
+                <td>{{ event.text }}</td>
+                <td>{{ event.date }}</td>
+            </tr>
+        </table>
+    {% if event.comments %}
+  {% if event.comments|length > 0 %}
+    <h2>Comments</h2>
+    <ul>
+    {% for comment in event.comments %}
+      <li>{{ comment.content }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}
+<form action="{{ url_for('new_comment', event_id=event.id) }}" method="post">
+  <div class="formwrapper">
+    <h2 class="title">Add a comment</h2>
+    <div class="form-field">
+      {{ form.comment.label }} <br/> {{ form.comment }}
+    </div>
+    {{ form.submit }}
+  </div>
+</form>
+
+
+    </body>
+</html>

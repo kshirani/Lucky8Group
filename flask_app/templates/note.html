@@ -30,5 +30,26 @@
                 <td>{{ note.date }}</td>
             </tr>
         </table>
+    {% if note.comments %}
+  {% if note.comments|length > 0 %}
+    <h2>Comments</h2>
+    <ul>
+    {% for comment in note.comments %}
+      <li>{{ comment.content }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}
+<form action="{{ url_for('new_comment', note_id=note.id) }}" method="post">
+  <div class="formwrapper">
+    <h2 class="title">Add a comment</h2>
+    <div class="form-field">
+      {{ form.comment.label }} <br/> {{ form.comment }}
+    </div>
+    {{ form.submit }}
+  </div>
+</form>
+
+
     </body>
 </html>
