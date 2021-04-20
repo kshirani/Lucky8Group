@@ -15,7 +15,7 @@
 
         </nav>
 
-        <h1>Welcome {{user.name}} to the 49er Events App!</h1>
+        <h1>Welcome {{user.name}} to the Events App!</h1>
     {% if event %}
         <form action="{{url_for ('update_event', event_id=event.id) }}" method="post">
     {% else %}

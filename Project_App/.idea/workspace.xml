@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc73941d-91bd-4bdf-8917-db5273c7d7d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/flask02.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/flask02.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/flask04.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/flask04.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/flask05.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/flask05.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_app/flask06.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/flask06.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_app/templates/note.html" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/templates/note.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/venv/Lib/site-packages/Flask-1.1.2.dist-info/INSTALLER" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/venv/Lib/site-packages/Flask-1.1.2.dist-info/INSTALLER" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_app/venv/Lib/site-packages/Flask-1.1.2.dist-info/LICENSE.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_app/venv/Lib/site-packages/Flask-1.1.2.dist-info/LICENSE.rst" afterDir="false" />
@@ -351,8 +347,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="454">
+              <caret line="34" column="62" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -369,20 +365,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/events.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/new.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+            <state relative-caret-position="289">
+              <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/main.css">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/events.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+              <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -449,7 +454,6 @@
         <option value="$PROJECT_DIR$/flask03.py" />
         <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/flask04.py" />
-        <option value="$PROJECT_DIR$/templates/new.html" />
         <option value="$PROJECT_DIR$/flask05.py" />
         <option value="$PROJECT_DIR$/forms.py" />
         <option value="$PROJECT_DIR$/templates/register.html" />
@@ -458,9 +462,10 @@
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/flask06.py" />
         <option value="$PROJECT_DIR$/templates/event.html" />
-        <option value="$PROJECT_DIR$/templates/events.html" />
-        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/static/main.css" />
+        <option value="$PROJECT_DIR$/templates/home.html" />
+        <option value="$PROJECT_DIR$/templates/events.html" />
+        <option value="$PROJECT_DIR$/templates/new.html" />
       </list>
     </option>
   </component>
@@ -527,7 +532,7 @@
     <frame x="697" y="0" width="842" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18385093" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17763975" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -601,13 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="283" lean-forward="true" selection-start-line="283" selection-end-line="283" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/new.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -686,24 +684,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/events.html">
+    <entry file="file://$PROJECT_DIR$/static/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="454">
+          <caret line="34" column="62" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/main.css">
+    <entry file="file://$PROJECT_DIR$/templates/events.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
         </state>
       </provider>
     </entry>
