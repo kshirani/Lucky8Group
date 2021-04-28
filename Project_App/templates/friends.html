@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Events App">
+        <title> Events App - View your Events</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+     <div class="topnav">
+
+    <nav>
+
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="/events"> My Events </a>
+            <a href="{{url_for('new_event')}}"> Add Event</a>
+            <a href="{{url_for('get_friends')}}"> Friend List</a>
+            <a href="{{ url_for('logout')}}">Logout</a>
+        </nav>
+     </div>
+    <h1>Welcome {{user}} to the Events!</h1>
+
+
+    <table class="friendlist">
+        <h1>Listing All Users</h1>
+            <tr>
+                <th>User Names :</th>
+
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{user.first_name + " "}}{{user.last_name}}</td>
+                <td>
+                    <form action = "{{ url_for('friend_add', friend_id=user.id) }}" method="post">
+                        <input type="submit" value="Add Friend">
+                    </form>
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+     <br><br>
+
+    <table class="friendlist">
+        <h1> Friend List :</h1>
+
+        <tr>
+            <th>User Names : </th>
+        </tr>
+        {% for friend in friends %}
+        <tr>
+            <td>{{ friend.friend.first_name + " "}}{{friend.friend.last_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+    </body>
+</html>

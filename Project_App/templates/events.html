@@ -10,13 +10,16 @@
     </head>
     <body>
     <nav>
-            <a href="{{ url_for('home')}}"> Home </a> ||
-            <a href="/events"> My Events </a> ||
-            <a href="{{url_for('new_event')}}"> Add Event</a> ||
+        <div class="topnav">
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="/events"> My Events </a>
+            <a href="{{url_for('new_event')}}"> Add Event</a>
+            <a href="{{url_for('get_friends')}}"> Friend List</a>
             <a href="{{ url_for('logout')}}">Logout</a>
+        </div>
         </nav>
     <h1>Welcome {{user}} to the Events!</h1>
-        <h1>Listing Events</h1>
+        <h1 class="eventlist">Listing Events</h1>
 
         <table>
             <tr>
@@ -32,9 +35,32 @@
                     <form action = "{{ url_for('delete_event', event_id=event.id) }}" method="post">
                         <input type="submit" value="Delete">
                     </form>
+
                 </td>
             </tr>
             {% endfor %}
+
         </table>
+
+
+    <h1 class="eventlist">Listing RSVP'd Events </h1>
+    <table>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+            </tr>
+            {% for rsvp in rsvps %}
+            <tr>
+                  <td><a href= "{{ url_for('get_event', event_id=rsvp.event.id) }}"> {{rsvp.event.title}}</a></td>
+                <td>{{ rsvp.event.date }}</td>
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+
     </body>
 </html>

@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
 </head>
     <body>
-        <div class="navdiv">
+        <div class="topnav">
         <nav>
-            <a href="{{ url_for('home')}}"> Home </a> ||
-            <a href="{{url_for('get_events')}}"> My Events </a> ||
-            <a href="{{url_for('new_event')}}"> Add Event</a> ||
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="{{url_for('get_events')}}"> My Events </a>
+            <a href="{{url_for('new_event')}}"> Add Event</a>
+
 
         </nav>
             {% if user %}
@@ -20,7 +21,7 @@
             </nav>
             {% else %}
                 <nav>
-                    <a href="{{ url_for('login')}}">Sign In</a> ||
+                    <a href="{{ url_for('login')}}">Sign In</a>
                     <a href="{{ url_for('register')}}">Register</a>
                 </nav>
             {% endif %}

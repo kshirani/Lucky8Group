@@ -10,12 +10,16 @@ from flask import redirect,url_for
 
 from database import db
 from models import Event as Event
+
 from models import User as User
 from forms import RegisterForm
 from flask import session
 from forms import LoginForm
 from models import Comment as Comment
-from forms import RegisterForm, LoginForm, CommentForm
+from models import Friendship as Friendship
+from models import RSVP as RSVP
+
+from forms import RegisterForm, LoginForm, RSVPForm, CommentForm
 
 app = Flask(__name__)     # create an app
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_note_app.db'
@@ -51,20 +55,27 @@ def home():
 def get_events():
     if session.get('user'):
         my_events = db.session.query(Event).filter_by(user_id=session['user_id']).all()
+                                  # (user)                                       .all
+        event_rsvps = db.session.query(RSVP).filter_by(user_id=session['user_id']).all()
+        print(event_rsvps)
+        return render_template('events.html', notes=my_events, user=session['user'],rsvps=event_rsvps )
 
-        return render_template('events.html', notes=my_events, user=session['user'])
     else:
         return redirect(url_for('login'))
 
 
 #add a route and function to handle requests to display this view.  Since the purpose of this route is to display
 # the details of one event will still need to utilize our mock list of notes.
-@app.route('/events/<event_id>')
+@app.route('/events/<int:event_id>')
 def get_event(event_id):
     if session.get('user'):
         my_event = db.session.query(Event).filter_by(id=event_id, user_id=session['user_id']).one()
-        form = CommentForm()
-        return render_template('event.html', event=my_event, user=session['user'], form=form)
+        form_comment = CommentForm()
+        event_rsvps = db.session.query(RSVP).filter_by(event_id=event_id).all()
+        form_rsvp  = RSVPForm()
+        print(event_rsvps)
+
+        return render_template('event.html', event=my_event, user=session['user'], form_comment=form_comment, form_rsvp=form_rsvp, rsvps=event_rsvps )
     else:
         return redirect(url_for('login'))
 
@@ -188,7 +199,7 @@ def logout():
 
     return redirect(url_for('home'))
 
-#comment:
+
 @app.route('/events/<event_id>/comment', methods=['POST'])
 def new_comment(event_id):
     if session.get('user'):
@@ -205,6 +216,28 @@ def new_comment(event_id):
 
     else:
         return redirect(url_for('login'))
+
+@app.route('/events/<event_id>/rsvp', methods=['POST'])
+def new_rsvp(event_id):
+    if session.get('user'):
+        rsvp_form = RSVPForm()
+        # validate_on_submit only validates using POST
+        if rsvp_form.validate_on_submit():
+            new_rsvp= RSVP(event_id,session['user_id'] )
+            db.session.add(new_rsvp)
+            db.session.commit()
+
+        return redirect(url_for('get_event', event_id=event_id))
+
+    else:
+        return redirect(url_for('login'))
+
+
+
+
+
+
+
 
 
 

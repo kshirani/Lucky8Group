@@ -10,20 +10,23 @@
     </head>
     <body>
        <nav>
-            <a href="{{ url_for('home')}}"> Home </a> ||
-            <a href="{{url_for('get_events')}}"> My Events</a> ||
-
+           <div class="topnav">
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="{{url_for('get_events')}}"> My Events</a>
+           <a href="{{url_for('new_event')}}"> Add Event</a>
+           <a href="{{url_for('get_friends')}}"> Friend List</a>
+           </div>
         </nav>
 
-        <h1>Welcome {{user.name}} to the Events App!</h1>
+        <h1>Welcome {{user}} to the Events App!</h1>
     {% if event %}
         <form action="{{url_for ('update_event', event_id=event.id) }}" method="post">
     {% else %}
         <form action="new" method="post">
     {% endif %}
-           <p><label>Title </label></p><p>
+           <p><label>Event Title : </label></p><p>
             <input type="text" name="title" value="{% if event %}{{event.title}} {% endif %}"/></p>
-            <p><label>Event </label></p>
+            <p><label>Event Description :</label></p>
             <p>
                 <textarea name="eventText"  rows="6" cols="0" >
                     {% if event %}

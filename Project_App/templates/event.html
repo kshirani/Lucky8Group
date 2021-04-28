@@ -9,14 +9,19 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
+    <div class = "topnav">
     <nav>
-            <a href="{{ url_for('home')}}"> Home </a> ||
-            <a href="/events"> My events </a> ||
-            <a href="{{url_for('new_event')}}"> Add Event</a> ||
+
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="/events"> My events </a>
+            <a href="{{url_for('new_event')}}"> Add Event</a>
+            <a href="{{url_for('new_event')}}"> Friend List</a>
             <a href="{{ url_for('logout')}}">Logout</a>
+
         </nav>
+        </div>
         <h1>Welcome {{user}} to the Events App!</h1>
-        <h1>Event detials</h1>
+        <h1>Event details</h1>
 
         <table>
             <tr>
@@ -30,9 +35,32 @@
                 <td>{{ event.date }}</td>
             </tr>
         </table>
-    {% if event.comments %}
+
+
+
+
+        {% if rsvps %}
+  {% if rsvps|length > 0 %}
+    <h2>RSVPs</h2>
+    <ul>
+    {% for rsvp in rsvps %}
+      <li>{{ rsvp.user.first_name + " "}}{{rsvp.user.last_name}}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}
+<form action="{{ url_for('new_rsvp', event_id=event.id) }}" method="post">
+  <div class="formwrapper">
+    <h2 class="title">Do you want to RSVP to this event? : </h2>
+
+    {{ form_rsvp.submit }}
+  </div>
+</form>
+
+
+     {% if event.comments %}
   {% if event.comments|length > 0 %}
-    <h2>Comments</h2>
+    <h2>Reminders</h2>
     <ul>
     {% for comment in event.comments %}
       <li>{{ comment.content }}</li>
@@ -42,14 +70,13 @@
 {% endif %}
 <form action="{{ url_for('new_comment', event_id=event.id) }}" method="post">
   <div class="formwrapper">
-    <h2 class="title">Add a comment</h2>
+    <h2 class="title">Add a reminder for your event :</h2>
     <div class="form-field">
-      {{ form.comment.label }} <br/> {{ form.comment }}
+      {{ form_comment.comment.label }} <br/> {{ form_comment.comment }}
     </div>
-    {{ form.submit }}
+    {{ form_comment.submit }}
   </div>
 </form>
-
 
     </body>
 </html>
