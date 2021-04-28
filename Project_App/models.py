@@ -37,6 +37,15 @@ class User(db.Model):
         self.password = password
         self.registered_on = datetime.date.today()
 
+class Friendship (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    friend_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    friend = db.relationship("User", backref="user", lazy=True, primaryjoin=friend_id==User.id)
+
+    def __init__(self, friend_id, user_id):
+        self.friend_id = friend_id
+        self.user_id = user_id
 
 
 class Comment(db.Model):

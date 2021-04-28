@@ -233,19 +233,32 @@ def new_rsvp(event_id):
         return redirect(url_for('login'))
 
 
+@app.route('/events/friends')
+def get_friends():
+    if session.get('user'):
+        users = db.session.query(User).all()
+        my_friends = db.session.query(Friendship).filter_by(user_id = session['user_id']).all()
 
+        return render_template('friends.html', users=users, user=session['user'],friends=my_friends )
+    else:
+        return redirect(url_for('login'))
 
-
-
-
-
+@app.route('/events/<friend_id>/friends', methods=['POST'])
+def friend_add(friend_id):
+    if session.get('user'):
+        new_friendship = Friendship(friend_id, session['user_id'])
+        db.session.add(new_friendship)
+        db.session.commit()
+        return redirect(url_for('get_friends'))
+    else:
+        return redirect(url_for('login'))
 
 
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
 # To see the web page in your web browser, go to the url,
 #  c
-# http://127.0.0.1:5000/index
+# http://127.0.0.1:5000/home
 # http://127.0.0.1:5000/notes
 #notes/new
 # http://127.0.0.1:5000/notes/1  or notes/2

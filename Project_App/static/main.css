@@ -33,8 +33,9 @@ h1{
 .friendlist th {
 font-weight: bold; }
 
-.eventlist h1{
+.eventlist {
 text-align: center;
+alignment: center;
 }
 
 
