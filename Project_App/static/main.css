@@ -33,9 +33,18 @@ h1{
 .friendlist th {
 font-weight: bold; }
 
-.eventlist {
+.eventlist h1{
 text-align: center;
 alignment: center;
+}
+
+input[type='submit']
+{
+    background-color: lightpink;
+    color: black;
+    font-size: 15px;
+    padding:5px;
+    font-family: Palatino Linotype, sans-serif;
 }
 
 
