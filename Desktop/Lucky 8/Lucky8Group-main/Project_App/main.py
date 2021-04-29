@@ -48,6 +48,16 @@ def home():
 #^^^^^^Here we added a variable (a_user) to store our mock user data and we passed that
 # variable to our template view (index.html) with a label called user.
 
+@app.route('/account')
+def get_account():
+    #check if a user is saved in session
+    if session.get('user'):
+        account = db.session.query(User).filter_by(id=session['user_id']).one()
+        return render_template("account.html", user=session['user'], account=account)
+    return render_template("home.html")
+
+
+
 @app.route('/events')
 def get_events():
     if session.get('user'):
@@ -87,10 +97,9 @@ def new_event():
             text = request.form['eventText']
             #create date stamp
             from datetime import date
-            today = date.today()
+            date = request.form['date']
             #format date mm/dd/yyyy
-            today = today.strftime("%m-%d-%Y")
-            newEntry = Event(title, text, today, session['user_id'])
+            newEntry = Event(title, text, date, session['user_id'])
             db.session.add(newEntry)
             db.session.commit()
 
@@ -111,10 +120,12 @@ def update_event(event_id):
             title = request.form['title']
         #get event data
             text = request.form['eventText']
+            date = request.form['date']
             event = db.session.query(Event).filter_by(id=event_id).one()
         #update event data
             event.title=title
             event.text = text
+            event.date = date
         #update event in DB
             db.session.add(event)
             db.session.commit()
