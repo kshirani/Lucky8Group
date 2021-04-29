@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Events App">
+        <title> Events App - View your Events</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+    <nav>
+        <div class="topnav">
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="/events"> My Events </a>
+            <a href="{{url_for('new_event')}}"> Add Event</a>
+            <a href="{{url_for('get_friends')}}"> Friend List</a>
+            <a href="{{ url_for('logout')}}">Logout</a>
+        </div>
+        </nav>
+    <h1>Welcome {{user}} to the Events!</h1>
+        <h1 class="eventlist">Listing Events</h1>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Address</th>
+                <th>Text</th>
+            </tr>
+            {% for event in notes %}
+            <tr>
+                  <td><a href= "{{ url_for('get_event', event_id=event.id) }}"> {{event.title}}</a></td>
+                <td>{{ event.date }}</td>
+                <td> <a href = "{{ url_for ('update_event', event_id= event.id) }}" > Edit</a></td>
+                <td>
+                    <form action = "{{ url_for('delete_event', event_id=event.id) }}" method="post">
+                        <input type="submit" value="Delete">
+                    </form>
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+    <h1 class="eventlist">Listing RSVP'd Events </h1>
+    <table>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+            </tr>
+            {% for rsvp in rsvps %}
+            <tr>
+                  <td><a href= "{{ url_for('get_event', event_id=rsvp.event.id) }}"> {{rsvp.event.title}}</a></td>
+                <td>{{ rsvp.event.date }}</td>
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="UNCC Notes App">
+        <title>UNCC Notes App - New Note</title>
+        <!-- styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+       <nav>
+           <div class="topnav">
+            <a href="{{ url_for('home')}}"> Home </a>
+            <a href="{{url_for('get_events')}}"> My Events</a>
+           <a href="{{url_for('new_event')}}"> Add Event</a>
+           <a href="{{url_for('get_friends')}}"> Friend List</a>
+           </div>
+        </nav>
+
+        <h1>Welcome {{user}} to the Events App!</h1>
+    {% if event %}
+        <form action="{{url_for ('update_event', event_id=event.id) }}" method="post">
+    {% else %}
+        <form action="new" method="post">
+    {% endif %}
+            <p><label>Event Title : </label></p><p>
+            <input type="text" name="title" value="{% if event %}{{event.title}} {% endif %}"/></p>
+
+            <label for="date">Input date:</label>
+            <input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2020-01-01" max="2025-12-31">
+
+            <p><label>Event address : </label></p><p>
+            <input type="text" name="Event address" value="{% if event %}{{event.address}} {% endif %}"/></p>
+
+
+
+            <p><label>Event Description :</label></p>
+            <p>
+                <textarea name="eventText"  rows="6" cols="0" >
+                    {% if event %}
+                        {{event.text}}
+                    {% else %}
+                        Add your new event here ...
+                    {% endif %}
+
+                </textarea>
+            </p>
+            <p>
+                {% if event %}
+                    <input type="submit" value="Update Event"/>
+                {% else %}
+                    <input type="submit" value="Add Event"/>
+                {% endif %}
+            </p>
+        </form>
+        </form>
+    </body>
+</html>
