@@ -24,8 +24,19 @@
     {% else %}
         <form action="new" method="post">
     {% endif %}
-           <p><label>Event Title : </label></p><p>
+            <p><label>Event Title : </label></p><p>
             <input type="text" name="title" value="{% if event %}{{event.title}} {% endif %}"/></p>
+
+            <label for="date">Input date:</label>
+            <input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2020-01-01" max="2025-12-31">
+
+            <p><label>Event address : </label></p><p>
+            <input type="text" name="Event address" value="{% if event %}{{event.address}} {% endif %}"/></p>
+
+
+
             <p><label>Event Description :</label></p>
             <p>
                 <textarea name="eventText"  rows="6" cols="0" >
