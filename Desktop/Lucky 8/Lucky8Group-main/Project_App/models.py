@@ -6,7 +6,8 @@ class Event(db.Model):
     title = db.Column("title", db.String(200))
     text = db.Column("text", db.String(100))
     date = db.Column("date", db.String(50))
-# can create a foreign key
+    address = db.Column("address", db.String(50))
+    # can create a foreign key
     user_id= db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     comments = db.relationship("Comment", backref="event", cascade="all, delete-orphan", lazy=True)
 

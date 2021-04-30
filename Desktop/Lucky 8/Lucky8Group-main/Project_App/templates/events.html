@@ -9,16 +9,17 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
+     <h1>Welcome {{user}} to the Event App!</h1>
     <nav>
         <div class="topnav">
             <a href="{{ url_for('home')}}"> Home </a>
             <a href="/events"> My Events </a>
             <a href="{{url_for('new_event')}}"> Add Event</a>
             <a href="{{url_for('get_friends')}}"> Friend List</a>
+            <a href="{{url_for('get_account')}}"> My Account</a>
             <a href="{{ url_for('logout')}}">Logout</a>
         </div>
         </nav>
-    <h1>Welcome {{user}} to the Events!</h1>
         <h1 class="eventlist">Listing Events</h1>
 
         <table>
@@ -30,9 +31,14 @@
             </tr>
             {% for event in notes %}
             <tr>
-                  <td><a href= "{{ url_for('get_event', event_id=event.id) }}"> {{event.title}}</a></td>
+                  <td>{{event.title}}</td>
                 <td>{{ event.date }}</td>
-                <td> <a href = "{{ url_for ('update_event', event_id= event.id) }}" > Edit</a></td>
+                <td>{{ event.address }}</td>
+                <td>{{ event.text }}</td>
+                <td>
+                    <form action = "{{ url_for('update_event', event_id= event.id) }}">
+                        <input type="submit" value="Edit">
+                    </form>
                 <td>
                     <form action = "{{ url_for('delete_event', event_id=event.id) }}" method="post">
                         <input type="submit" value="Delete">

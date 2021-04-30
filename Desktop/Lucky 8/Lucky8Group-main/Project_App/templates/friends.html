@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
+     <h1>Welcome {{user}} to the Event App!</h1>
      <div class="topnav">
 
     <nav>
@@ -17,10 +18,10 @@
             <a href="/events"> My Events </a>
             <a href="{{url_for('new_event')}}"> Add Event</a>
             <a href="{{url_for('get_friends')}}"> Friend List</a>
+            <a href="{{url_for('get_account')}}"> My Account</a>
             <a href="{{ url_for('logout')}}">Logout</a>
         </nav>
      </div>
-    <h1>Welcome {{user}} to the Events!</h1>
 
 
     <table class="friendlist">

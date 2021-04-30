@@ -121,11 +121,13 @@ def update_event(event_id):
         #get event data
             text = request.form['eventText']
             date = request.form['date']
+            address = request.form['address']
             event = db.session.query(Event).filter_by(id=event_id).one()
         #update event data
             event.title=title
             event.text = text
             event.date = date
+            event.address = address
         #update event in DB
             db.session.add(event)
             db.session.commit()

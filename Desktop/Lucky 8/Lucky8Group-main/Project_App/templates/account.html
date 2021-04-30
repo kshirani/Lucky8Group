@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
+     <h1>Welcome {{user}} to the Event App!</h1>
        <nav>
            <div class="topnav">
             <a href="{{ url_for('home')}}"> Home </a>
@@ -16,33 +17,16 @@
            <a href="{{url_for('new_event')}}"> Add Event</a>
            <a href="{{url_for('get_friends')}}"> Friend List</a>
            <a href="{{url_for('get_account')}}"> My Account</a>
+               <a href="{{ url_for('logout')}}">Logout</a>
 
            </div>
         </nav>
 
-        <h1>Welcome {{user}} to the Events App!</h1>
-       <table class="UserNames">
-            <tr>
-                <th>First Name :</th>
-
-                <td>{{account.first_name }}</td>
-
-            </tr>
-
-            <tr>
-                <th>Last Name :</th>
-
-
-               <td>{{account.last_name}}</td>
-
-           <tr>
-                <th>Email :</th>
-
-            </tr>
-
-               <td>{{account.email}}</td>
-       </table>
-   </div>
+       <div class="UserNames">
+                <br><p>First Name : {{account.first_name }}</p>
+                <p>Last Name : {{account.last_name}}</p>
+                <p>Email : {{account.email}}</p>
+       </div>
 
 
 

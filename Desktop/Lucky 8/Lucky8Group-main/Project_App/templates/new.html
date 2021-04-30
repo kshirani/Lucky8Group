@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     </head>
     <body>
+     <h1>Welcome {{user}} to the Event App!</h1>
        <nav>
            <div class="topnav">
             <a href="{{ url_for('home')}}"> Home </a>
@@ -16,11 +17,10 @@
            <a href="{{url_for('new_event')}}"> Add Event</a>
            <a href="{{url_for('get_friends')}}"> Friend List</a>
            <a href="{{url_for('get_account')}}"> My Account</a>
-            <a href="{{ url_for('logout')}}">Logout</a>
+               <a href="{{ url_for('logout')}}">Logout</a>
            </div>
         </nav>
 
-        <h1>Welcome {{user}} to the Events App!</h1>
     {% if event %}
         <form action="{{url_for ('update_event', event_id=event.id) }}" method="post">
     {% else %}
@@ -36,7 +36,7 @@
        min="2021-04-28" max="2025-12-31">
 
             <p><label>Event address : </label></p><p>
-            <input type="text" name="Event address" value="{% if event %}{{event.address}} {% endif %}"/></p>
+            <input type="text" name="address" value="{% if event %}{{event.address}} {% endif %}"/></p>
 
 
 
