@@ -272,7 +272,8 @@ def edit_account(user_id):
         print('check data and submit')
     else:
         print('get data from db and add to form')
-
+        
+# having issues with a redirect thing where the account edit function is not updating 
 #@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
 #def edit_account(user_id):
  #   if session.get('user'):
