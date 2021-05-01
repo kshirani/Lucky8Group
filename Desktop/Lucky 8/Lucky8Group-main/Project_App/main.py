@@ -12,7 +12,7 @@ from database import db
 from models import Event as Event
 
 from models import User as User
-from forms import RegisterForm
+from forms import RegisterForm, editAccount
 from flask import session
 from forms import LoginForm
 from models import Comment as Comment
@@ -20,6 +20,7 @@ from models import Friendship as Friendship
 from models import RSVP as RSVP
 
 from forms import RegisterForm, LoginForm, RSVPForm, CommentForm
+
 
 app = Flask(__name__)     # create an app
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_note_app.db'
@@ -229,18 +230,18 @@ def new_comment(event_id):
 
 @app.route('/events/<event_id>/rsvp', methods=['POST'])
 def new_rsvp(event_id):
-    if session.get('user'):
-        rsvp_form = RSVPForm()
-        # validate_on_submit only validates using POST
-        if rsvp_form.validate_on_submit():
-            new_rsvp= RSVP(event_id,session['user_id'] )
-            db.session.add(new_rsvp)
-            db.session.commit()
+   if session.get('user'):
+       rsvp_form = RSVPForm()
+       # validate_on_submit only validates using POST
+       if rsvp_form.validate_on_submit():
+           new_rsvp= RSVP(event_id,session['user_id'] )
+           db.session.add(new_rsvp)
+           db.session.commit()
 
-        return redirect(url_for('get_event', event_id=event_id))
+       return redirect(url_for('get_event', event_id=event_id))
 
-    else:
-        return redirect(url_for('login'))
+   else:
+       return redirect(url_for('login'))
 
 
 @app.route('/events/friends')
@@ -263,6 +264,39 @@ def friend_add(friend_id):
     else:
         return redirect(url_for('login'))
 
+@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
+#@login_required
+def edit_account(user_id):
+    form = editAccount()
+    if request.method == 'POST':
+        print('check data and submit')
+    else:
+        print('get data from db and add to form')
+
+#@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
+#def edit_account(user_id):
+ #   if session.get('user'):
+  #         first_name = request.form['first_name']
+   #         last_name = request.form['last_name']
+    #        email = request.form['email']
+
+            #account = db.session.query(User).filter_by(id=user_id).one()
+     #       user_id.first_name = first_name
+      #      user_id.last_name = last_name
+       #     user_id.email = email
+
+        #    db.session.add(user_id)
+         #   db.session.commit()
+
+            #my_account = db.session.query(user_id).filter_by(id=user_id).one()
+          #  return redirect(url_for('home.html'))
+        #else:
+        #retrive from data base:
+         #   my_account = db.session.query(user_id).filter_by(id=user_id).one()
+
+          #  return render_template('home.html', account=my_account, user=session['user'])
+    #else:
+     #   return redirect(url_for('login'))
 
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
