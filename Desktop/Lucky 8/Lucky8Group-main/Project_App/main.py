@@ -39,15 +39,60 @@ with app.app_context():
 # @app.route is a decorator. It gives the function "index" special powers.
 # In this case it makes it so anyone going to "your-url/" makes this function
 # get called. What it returns is what is shown as the web page
-
+@app.route('/')
 @app.route('/home')
 def home():
-    #check if a user is saved in session
+    # retrieve user from database
+    # check if a user is saved in session
     if session.get('user'):
-        return render_template("home.html", user=session['user'])
-    return render_template("home.html")
-#^^^^^^Here we added a variable (a_user) to store our mock user data and we passed that
-# variable to our template view (index.html) with a label called user.
+        events = db.session.query(Event).all()
+        # users = db.session.query(User).all
+
+        # find the rsvps associated with the user id
+        # rsvps = db.session.query(Rsvp).filter_by(user_id=session(['user_id'])).all()
+
+        # find the events in rsvps
+        # rsvp_events = db.session.query(Event).filter_by(event_id=rsvps.event_id).all()
+
+        # rsvp = db.session.query(Rsvp).get(Rsvp.event_id).filter_by(user_id=session['user_id']).all()
+        my_events = db.session.query(Event).filter_by(user_id=session['user_id']).all()
+        # (user)                                       .all
+        event_rsvps = db.session.query(RSVP).filter_by(user_id=session['user_id']).all()
+
+        return render_template('home.html', index=events, notes=my_events, user=session['user'], rsvps=event_rsvps)
+
+    else:
+           return redirect(url_for('login'))
+
+    @app.route('/home/<event_id>/report', methods=['GET', 'POST'])
+    def report(event_id):
+        if session.get('user'):
+            # Retrieve event from database and the amount of times it was reported
+            reported_event = db.session.query(Event).filter_by(id=event_id).one()
+            report_count = reported_event.report_count
+            # Increment amount of times it has been reported by 1
+            report_count = report_count + 1
+            # update count for the event
+            reported_event.report_count = report_count
+
+            # update db
+            db.session.add(reported_event)
+            db.session.commit()
+
+            # Delete event if it has been reported 3 times
+            if report_count >= 3:
+                # Delete the event
+                db.session.delete(reported_event)
+                db.session.commit()
+
+                # Return to home page after event is deleted
+                return redirect(url_for('home'))
+
+            # Go to Report.html page
+            return render_template("report.html", event=reported_event, user=session['user'])
+        else:
+            # User is not in session, redirect to login
+            return redirect(url_for('login'))
 
 @app.route('/account')
 def get_account():

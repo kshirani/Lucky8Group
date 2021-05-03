@@ -33,11 +33,47 @@
 
 
 
+        <div class="body">
+            <h1>Events Home Page</h1>
 
-        <br><br><br><br>
 
 
 
+
+            <br><br><br>
+
+            <table class="tablehome">
+                <tr>
+                     <th>Title</th>
+                <th>Date</th>
+                <th>Address</th>
+                <th>Text</th>
+
+                </tr>
+                {% for event in index %}
+                <tr>
+                    <td><a href="{{ url_for('get_events', event_id=event.id) }}">{{ event.title }}</a></td>
+
+                <td>{{ event.date }}</td>
+                <td>{{ event.address }}</td>
+                <td>{{ event.text }}</td>
+                
+                <td>
+                    <form action = "{{ url_for('get_event', event_id= event.id) }}" class="RSVPbutton">
+                        <input type="submit" value="RSVP" class="RSVPbutton">
+                    </form>
+                </td>
+                <td>
+                    <form action = "{{ url_for('get_event', event_id= event.id) }}" class="Reportbutton">
+                        <input type="submit" value="Report" class="Reportbutton">
+                    </form>
+                </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
+
+        </div>
     </body>
 </html>
-
