@@ -309,40 +309,43 @@ def friend_add(friend_id):
     else:
         return redirect(url_for('login'))
 
-@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
+#@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
 #@login_required
-def edit_account(user_id):
-    form = editAccount()
-    if request.method == 'POST':
-        print('check data and submit')
-    else:
-        print('get data from db and add to form')
+#def edit_account(user_id):
+ #   form = editAccount()
+  #  if request.method == 'POST':
+  #      print('check data and submit')
+   # else:
+    #    print('get data from db and add to form')
         
 # having issues with a redirect thing where the account edit function is not updating 
-#@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
-#def edit_account(user_id):
- #   if session.get('user'):
-  #         first_name = request.form['first_name']
-   #         last_name = request.form['last_name']
-    #        email = request.form['email']
+@app.route('/account/edit/<user_id>', methods=['GET', 'POST'])
+def edit_account(user_id):
+    form = RegisterForm()
+    #print(user_id)
+    if session.get('user'):
+        if request.method == 'POST':
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
+            email = request.form['email']
 
             #account = db.session.query(User).filter_by(id=user_id).one()
-     #       user_id.first_name = first_name
-      #      user_id.last_name = last_name
-       #     user_id.email = email
+            user_id.first_name = first_name
+            user_id.last_name = last_name
+            user_id.email = email
 
-        #    db.session.add(user_id)
-         #   db.session.commit()
+            db.session.add(user_id)
+            db.session.commit()
 
             #my_account = db.session.query(user_id).filter_by(id=user_id).one()
-          #  return redirect(url_for('home.html'))
-        #else:
-        #retrive from data base:
-         #   my_account = db.session.query(user_id).filter_by(id=user_id).one()
+            return redirect(url_for('get_account'))
+        else:
+            #retrive from data base:
+            my_account = db.session.query(User).filter_by(id=user_id).one()
 
-          #  return render_template('home.html', account=my_account, user=session['user'])
-    #else:
-     #   return redirect(url_for('login'))
+        return render_template('register.html', account=my_account, user=session['user'])
+    else:
+        return redirect(url_for('login'))
 
 app.run(host=os.getenv('IP', '127.0.0.1'),port=int(os.getenv('PORT', 5000)),debug=True)
 
